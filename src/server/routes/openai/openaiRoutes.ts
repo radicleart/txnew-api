@@ -23,8 +23,18 @@ router.post("/chat", async (req, res, next) => {
   try {
     // Send prompt to OpenAI API
     const response = await openai.chat.completions.create({
-      model: 'gpt-4', // Specify the model you want to use (e.g., 'gpt-3.5-turbo', 'gpt-4')
-      messages: [{ role: 'user', content: prompt }],
+      messages: [
+        {
+        role: "system",
+        content:
+            "Respond only with a number, including potential decimals, of what the user entered. Handle metric system (example: 1 micro = 0.000001)",
+        },
+        { role: "user", content: prompt },
+      ],
+      model: "gpt-3.5-turbo",
+      //model: 'gpt-4', // Specify the model you want to use (e.g., 'gpt-3.5-turbo', 'gpt-4')
+      max_tokens: 100,
+      temperature: 0,
     });
 
     const chatResponse = response.choices[0].message.content;
