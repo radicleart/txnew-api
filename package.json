@@ -1,0 +1,48 @@
+{
+  "name": "ai-flow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "NODE_ENV=production tsc",
+    "start": "NODE_ENV=mainnet node dist/app.js",
+    "dev": "NODE_ENV=development ts-node-dev --respawn src/app.ts",
+    "cli": "NODE_ENV=development ts-node src/cli/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@stacks/network": "^6.13.0",
+    "@stacks/transactions": "^6.15.0",
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.2",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "midi-writer-js": "^3.1.1",
+    "mongodb": "^6.6.2",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.3",
+    "node-fetch": "^3.3.2",
+    "node-html-parser": "^6.1.13",
+    "node-wav": "^0.0.2",
+    "ollama": "^0.5.1",
+    "openai": "^4.57.3",
+    "pitchfinder": "^2.3.2",
+    "tsoa": "^6.2.1",
+    "ws": "^8.17.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^20.12.12",
+    "@types/node-cron": "^3.0.11",
+    "@types/node-wav": "^0.0.3",
+    "@types/ws": "^8.5.10",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4"
+  }
+}

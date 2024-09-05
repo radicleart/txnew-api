@@ -1,0 +1,31 @@
+import fetch from 'node-fetch'; // or use global fetch in browser environments
+import cheerio from 'cheerio';
+import { BaseTool } from '../BaseTool';
+
+export class CheerioScrapingTool extends BaseTool {
+    constructor() {
+        super("WebScrapingTool", "Tool for scraping data from websites.");
+    }
+
+    async run(url: string): Promise<string> {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const html = await response.text();
+            const $ = cheerio.load(html);
+
+            // Example: Extract all paragraph texts from the webpage
+            const data: string[] = [];
+            $('p').each((index, element) => {
+                data.push($(element).text());
+            });
+
+            return data.join("\n");
+        } catch (error) {
+            console.error("Failed to scrape the website:", error);
+            throw new Error(`Failed to scrape the website due to: ${error}`);
+        }
+    }
+}
